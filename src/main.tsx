@@ -20,7 +20,7 @@ const kommuneLayer = new VectorLayer({
 });
 const grunnskoleLayer = new VectorLayer({
   source: new VectorSource({
-    url: "api/grunnskoler",
+    url: "/api/grunnskoler",
     format: new GeoJSON(),
   }),
 });

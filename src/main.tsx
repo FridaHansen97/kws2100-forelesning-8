@@ -21,6 +21,13 @@ const kommuneLayer = new VectorTileLayer({
   }),
 });
 
+const vegadresseLayer = new VectorTileLayer({
+  source: new VectorTileSource({
+    url: "/api/vegadresse/{z}/{x}/{y}",
+    format: new MVT(),
+  }),
+});
+
 const grunnskoleLayer = new VectorLayer({
   source: new VectorSource({
     url: "/api/grunnskoler",
@@ -31,7 +38,7 @@ const grunnskoleLayer = new VectorLayer({
 const backgroundLayer = new TileLayer({ source: new OSM() });
 const map = new Map({
   view: new View({ center: [11.05, 59.95], zoom: 14 }),
-  layers: [backgroundLayer, kommuneLayer, grunnskoleLayer],
+  layers: [backgroundLayer, kommuneLayer, vegadresseLayer, grunnskoleLayer],
 });
 
 function Application() {

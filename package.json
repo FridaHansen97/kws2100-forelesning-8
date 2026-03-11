@@ -14,7 +14,10 @@
     "db:grunnskoler:download": "download --out tmp --extract https://nedlasting.geonorge.no/geonorge/Befolkning/Grunnskoler/PostGIS/Befolkning_0000_Norge_25833_Grunnskoler_PostGIS.zip",
     "db:grunnskoler:load": " npm run psql:docker < tmp/Befolkning_0000_Norge_25833_Grunnskoler_PostGIS.sql",
     "db:grunnskoler:load:server": "psql $DATABASE_URL < tmp/Befolkning_0000_Norge_25833_Grunnskoler_PostGIS.sql",
-    "psql:docker": "docker exec -i postgis psql --user postgres < tmp/Befolkning_0000_Norge_25833_Grunnskoler_PostGIS.sql",
+    "db:kommuner:download": "download --out tmp --extract https://nedlasting.geonorge.no/geonorge/Basisdata/Kommuner/PostGIS/Basisdata_0000_Norge_25833_Kommuner_PostGIS.zip",
+    "db:kommunner:load": " npm run psql:docker < tmp/Befolkning_0000_Norge_25833_Grunnskoler_PostGIS.sql",
+    "db:kommuner:load:server": "psql $DATABASE_URL < tmp/Basisdata_0000_Norge_25833_Kommuner_PostGIS.sql",
+    "psql:docker": "docker exec -i postgis psql --user postgres < tmp/Basisdata_0000_Norge_25833_Kommuner_PostGIS.sql",
     "dev": "concurrently npm:dev;client npm:dev:server",
     "dev:client": "vite",
     "dev:server": "cd server && npm run dev",
@@ -41,6 +44,7 @@
     "vite": "^7.3.1"
   },
   "dependencies": {
+    "concurrently": "^9.2.1",
     "ol": "^10.8.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

@@ -9,24 +9,29 @@ import { OSM } from "ol/source.js";
 import "ol/ol.css";
 import VectorLayer from "ol/layer/Vector.js";
 import VectorSource from "ol/source/Vector.js";
-import { GeoJSON } from "ol/format.js";
+import { GeoJSON, MVT } from "ol/format.js";
+import VectorTileLayer from "ol/layer/VectorTile.js";
+import VectorTileSource from "ol/source/VectorTile.js";
 
 useGeographic();
-const kommuneLayer = new VectorLayer({
-  source: new VectorSource({
-    url: "/geojson/Kommuner.geojson",
-    format: new GeoJSON(),
+const kommuneLayer = new VectorTileLayer({
+  source: new VectorTileSource({
+    url: "/api/kommuner/{z}/{x}/{y}",
+    format: new MVT(),
   }),
 });
+
 const grunnskoleLayer = new VectorLayer({
   source: new VectorSource({
     url: "/api/grunnskoler",
     format: new GeoJSON(),
   }),
 });
+
+const backgroundLayer = new TileLayer({ source: new OSM() });
 const map = new Map({
-  view: new View({ center: [10.7, 59.9], zoom: 8 }),
-  layers: [new TileLayer({ source: new OSM() }), kommuneLayer, grunnskoleLayer],
+  view: new View({ center: [11.05, 59.95], zoom: 14 }),
+  layers: [backgroundLayer, kommuneLayer, grunnskoleLayer],
 });
 
 function Application() {
